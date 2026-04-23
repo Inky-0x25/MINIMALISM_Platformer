@@ -1,0 +1,118 @@
+[gd_scene load_steps=2 format=3 uid="uid://bokrxqgyw0hvi"]
+
+[ext_resource type="Script" uid="uid://4djbpxmvja1" path="res://GUI/Settings/settings.gd" id="1_jy240"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jy240")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LanguageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LanguageText" type="Label" parent="MarginContainer/VBoxContainer/LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "@menu_language@"
+
+[node name="LanguageButton" type="OptionButton" parent="MarginContainer/VBoxContainer/LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Italiano"
+popup/item_1/id = 1
+popup/item_2/text = "简体中文"
+popup/item_2/id = 2
+popup/item_3/text = "日本語"
+popup/item_3/id = 3
+
+[node name="FrameLockContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FrameLockText" type="Label" parent="MarginContainer/VBoxContainer/FrameLockContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "@menu_framelock@"
+
+[node name="FrameLockButton" type="OptionButton" parent="MarginContainer/VBoxContainer/FrameLockContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 5
+popup/item_0/text = "30fps"
+popup/item_0/id = 0
+popup/item_1/text = "60fps"
+popup/item_1/id = 1
+popup/item_2/text = "90fps"
+popup/item_2/id = 2
+popup/item_3/text = "120fps"
+popup/item_3/id = 3
+popup/item_4/text = "Unlimited"
+popup/item_4/id = 4
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeText" type="Label" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "@menu_music_volume@"
+
+[node name="MusicVolumeButton" type="HSlider" parent="MarginContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="SoundVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SoundVolumeText" type="Label" parent="MarginContainer/VBoxContainer/SoundVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "@menu_sound_volume@"
+
+[node name="SoundVolumeButton" type="HSlider" parent="MarginContainer/VBoxContainer/SoundVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="ControlsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlsText" type="Label" parent="MarginContainer/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "@menu_controls@"
+
+[node name="ControlsButton" type="Button" parent="MarginContainer/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+text = "@menu_edit@"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "@menu_back@"
