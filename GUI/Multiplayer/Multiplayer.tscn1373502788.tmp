@@ -57,8 +57,6 @@ size_flags_horizontal = 3
 placeholder_text = "@menu_insert_name@"
 max_length = 15
 expand_to_text_length = true
-context_menu_enabled = false
-emoji_menu_enabled = false
 
 [node name="Player2Container" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/LocalMultiplayerContainer" unique_id=1380193971]
 layout_mode = 2
@@ -78,8 +76,6 @@ placeholder_text = "@menu_insert_name@"
 max_length = 15
 editable = false
 expand_to_text_length = true
-context_menu_enabled = false
-emoji_menu_enabled = false
 
 [node name="HostContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer" unique_id=1421827407]
 layout_mode = 2
@@ -97,8 +93,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 editable = false
-context_menu_enabled = false
-emoji_menu_enabled = false
 
 [node name="PublicIPContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/HostContainer" unique_id=185735539]
 layout_mode = 2
@@ -113,31 +107,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 editable = false
-context_menu_enabled = false
-emoji_menu_enabled = false
 
-[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/HostContainer" unique_id=538557033]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/HostContainer" unique_id=538557033]
 layout_mode = 2
 text = "@menu_host@"
 
-[node name="JoinContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer" unique_id=1948371736]
+[node name="JoinContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer" unique_id=1192965406]
 layout_mode = 2
 
-[node name="IP_to_joinContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer" unique_id=632031389]
-layout_mode = 2
-
-[node name="IP_to_joinLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer/IP_to_joinContainer" unique_id=1513024091]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer" unique_id=1513024091]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "@menu_join_IP@"
 
-[node name="IP_to_join" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer/IP_to_joinContainer" unique_id=448309819]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer" unique_id=448309819]
 layout_mode = 2
 size_flags_horizontal = 3
-context_menu_enabled = false
-emoji_menu_enabled = false
 
-[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer" unique_id=608481424]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MultiplayerContainer/JoinContainer" unique_id=608481424]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "@menu_join@"
@@ -172,26 +159,25 @@ size_flags_vertical = 3
 [node name="Player1InfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer" unique_id=2055420794]
 layout_mode = 2
 
-[node name="PlayerName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player1InfoContainer" unique_id=926487247]
+[node name="Player1Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player1InfoContainer" unique_id=926487247]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "@menu_unnamed@"
 
-[node name="PlayerID" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player1InfoContainer" unique_id=121943951]
+[node name="Player1ID" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player1InfoContainer" unique_id=121943951]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1_1"
 
 [node name="Player2InfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer" unique_id=1873649924]
-visible = false
 layout_mode = 2
 
-[node name="PlayerName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player2InfoContainer" unique_id=1234158430]
+[node name="Player2Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player2InfoContainer" unique_id=1234158430]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "@menu_unnamed@"
 
-[node name="PlayerID" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player2InfoContainer" unique_id=2028559140]
+[node name="Player2ID" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/ScrollContainer/PlayerListContainer/Player2InfoContainer" unique_id=2028559140]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1_2"
@@ -202,15 +188,11 @@ layout_mode = 2
 [node name="DisconnectButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/RoomActionsContainer" unique_id=1169483787]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
-disabled = true
 text = "@menu_disconnect@"
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/RoomContainer/RoomActionsContainer" unique_id=1544069027]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
-disabled = true
 text = "@menu_start@"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer" unique_id=59984971]

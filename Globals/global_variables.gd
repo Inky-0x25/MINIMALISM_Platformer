@@ -8,6 +8,8 @@ var data_file = "user://data.cfg"
 # global variables
 const supported_fps_caps = [30, 60, 90, 120, 0]
 var last_scene_path : String = ""
+var local_multiplayer_enabled : bool = false
+var remote_multiplayer_enabled : bool = false
 
 	# setting variables
 var current_language : String = "en"
@@ -20,12 +22,11 @@ var total_play_time : float = 0
 
 	# data variables
 var current_play_time : float = 0
-var current_map : String = ""
+var unlocked_stage_name : String = "Tutorial"
+var unlocked_map_number : int = 1
 
 func _ready():
-	load_settings()
-	load_statistics()
-	load_data()
+	load_everything()
 
 func _process(delta):
 	current_play_time += delta
@@ -37,7 +38,7 @@ func load_settings():
 	
 	if err == OK:
 		# load language
-		current_language = config.get_value("settings", "language", "")
+		current_language = config.get_value("settings", "language", "en")
 		if current_language in Language.supported_languages:
 			Language.set_language(current_language)
 		else:
@@ -67,9 +68,6 @@ func load_settings():
 			
 			InputMap.action_erase_events(action)
 			InputMap.action_add_event(action, event)
-	else:
-		var system_lang = OS.get_locale().split("_")[0]
-		Language.set_language(system_lang)
 
 func save_settings():
 	var config = ConfigFile.new()
@@ -107,12 +105,25 @@ func load_data():
 	var err = config.load(data_file)
 	
 	if err == OK:
-		current_map = config.get_value("save", "map", "")
+		unlocked_stage_name = config.get_value("data", "stage_name", "Tutorial")
+		unlocked_map_number = config.get_value("data", "map_number", 1)
 	else:
-		print("No save file found, starting fresh")
+		print("No saved file found, starting fresh")
 
 func save_data():
 	var config = ConfigFile.new()
-	config.set_value("save", "map", current_map)
+	config.set_value("data", "stage_name", unlocked_stage_name)
+	config.set_value("data", "map_number", unlocked_map_number)
 	
 	config.save(data_file)
+
+func load_everything():
+	load_settings()
+	load_statistics()
+	load_data()
+
+func save_everything():
+	save_settings()
+	save_statistics()
+	save_data()
+	

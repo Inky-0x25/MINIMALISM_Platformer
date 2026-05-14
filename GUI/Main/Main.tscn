@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3dduwi63mscx"]
+[gd_scene format=3 uid="uid://d3dduwi63mscx"]
 
 [ext_resource type="Script" uid="uid://duhvri4wwby5c" path="res://GUI/Main/linking.gd" id="1_4d01f"]
 
-[node name="main" type="Control"]
+[node name="main" type="Control" unique_id=2069026437]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +11,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_4d01f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=464954450]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,37 +27,40 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
-script = ExtResource("1_4d01f")
 
-[node name="Singleplayer" type="Button" parent="VBoxContainer"]
+[node name="SceneButtonContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=597326494]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Singleplayer" type="Button" parent="VBoxContainer/SceneButtonContainer" unique_id=888567132]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "@menu_singleplayer@"
 icon_alignment = 1
 
-[node name="Multiplayer" type="Button" parent="VBoxContainer"]
+[node name="Multiplayer" type="Button" parent="VBoxContainer/SceneButtonContainer" unique_id=1653675349]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "@menu_multiplayer@"
 icon_alignment = 1
 
-[node name="Map_editor" type="Button" parent="VBoxContainer"]
+[node name="Map_editor" type="Button" parent="VBoxContainer/SceneButtonContainer" unique_id=1207228839]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "@menu_map_editor@"
 icon_alignment = 1
 
-[node name="Settings" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer/SceneButtonContainer" unique_id=447831153]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "@menu_settings@"
 icon_alignment = 1
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=616788241]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

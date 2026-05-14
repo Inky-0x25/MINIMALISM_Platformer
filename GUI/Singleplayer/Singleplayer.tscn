@@ -1,42 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1rgtqjktt401"]
+[gd_scene format=3 uid="uid://c1rgtqjktt401"]
 
-[ext_resource type="Script" uid="uid://bfqtuvso1k8y0" path="res://GUI/Singleplayer/accordion_menu.gd" id="1_7j8m0"]
+[ext_resource type="Script" uid="uid://bfqtuvso1k8y0" path="res://GUI/Singleplayer/singleplayer.gd" id="1_7j8m0"]
 
-[node name="LevelSelect" type="Control"]
+[node name="LevelSelect" type="Control" unique_id=1735165453]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7j8m0")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=877620198]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=462857176]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=1398568435]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_7j8m0")
 
-[node name="Tutorial" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Accordion_menuContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1761578711]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TutorialContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer" unique_id=1365940676]
 layout_mode = 2
 
-[node name="Tutorial" type="Button" parent="ScrollContainer/VBoxContainer/Tutorial"]
+[node name="TutorialButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/TutorialContainer" unique_id=616672291]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "@menu_tutorial@"
+text = "@level_tutorial@"
 
-[node name="Level_container" type="HFlowContainer" parent="ScrollContainer/VBoxContainer/Tutorial"]
+[node name="LevelContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/TutorialContainer" unique_id=1372820953]
 visible = false
 layout_mode = 2
 
-[node name="1" type="Button" parent="ScrollContainer/VBoxContainer/Tutorial/Level_container"]
+[node name="Tutorial_1" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/TutorialContainer/LevelContainer" unique_id=315066566]
 layout_mode = 2
 text = "1"
+
+[node name="PlatformsContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer" unique_id=920968544]
+layout_mode = 2
+
+[node name="PlatformsButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/PlatformsContainer" unique_id=481414713]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "@level_platforms@"
+
+[node name="LevelContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/PlatformsContainer" unique_id=638364837]
+visible = false
+layout_mode = 2
+
+[node name="Platforms_1" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Accordion_menuContainer/PlatformsContainer/LevelContainer" unique_id=1997804647]
+layout_mode = 2
+text = "1"
+
+[node name="Back" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=77141874]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "@menu_back@"

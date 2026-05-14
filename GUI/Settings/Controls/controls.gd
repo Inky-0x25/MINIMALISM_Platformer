@@ -15,7 +15,6 @@ func _ready():
 				if "Button" in child.name:
 					var action = child.get_meta("action")
 					child.text = get_action_key_text(action)
-					print(action + " " + child.text)
 					child.pressed.connect(start_rebinding.bind(child, action))
 
 func start_rebinding(button, action_name):
@@ -23,7 +22,7 @@ func start_rebinding(button, action_name):
 	waiting_for_input = true
 	action_to_rebind = action_name
 	
-func _input(event):
+func _unhandled_input(event):
 	if waiting_for_input and event is InputEventKey and event.pressed:
 		rebind_action(action_to_rebind, event)
 		waiting_for_input = false

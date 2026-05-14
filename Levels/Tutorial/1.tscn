@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dnw1d72pibeoi"]
+
+[ext_resource type="PackedScene" uid="uid://cqng2udp4uetb" path="res://Entities/Platform/Platform.tscn" id="1_m64vd"]
+
+[node name="1" type="Node2D" unique_id=1634874376]
+
+[node name="Platform" parent="." unique_id=587979277 instance=ExtResource("1_m64vd")]
+position = Vector2(130, 312)
+scale = Vector2(3, 1)
+
+[node name="Platform2" parent="." unique_id=879242658 instance=ExtResource("1_m64vd")]
+position = Vector2(320, 360)
+scale = Vector2(50, 1)

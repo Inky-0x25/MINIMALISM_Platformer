@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="MINIMALISM Platformer"
 run/main_scene="res://GUI/Main/Main.tscn"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
@@ -20,12 +24,17 @@ GlobalNav="*res://Globals/global_navigation.gd"
 GlobalFunc="*res://Globals/global_functions.gd"
 GlobalVar="*res://Globals/global_variables.gd"
 Language="*res://Globals/language_manager.gd"
+PlayersManager="*uid://deuku8506ylmk"
+Networking="*uid://budai83rkkh25"
+ExitMenu="*uid://w0r84dmdqxd2"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/mode=4
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [input]
 
