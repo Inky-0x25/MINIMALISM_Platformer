@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://coqi2wx5n8ay6"]
+
+[ext_resource type="Script" uid="uid://drgtdsp7vn1hy" path="res://Entities/Anchors/Swing_anchors/swing_anchor.gd" id="1_cv0es"]
+
+[sub_resource type="Gradient" id="Gradient_xfv5y"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.078431375, 0.078431375, 0.47058824, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cv0es"]
+gradient = SubResource("Gradient_xfv5y")
+fill_from = Vector2(1, 0)
+
+[node name="SwingAnchor" type="Marker2D" unique_id=1410939912]
+script = ExtResource("1_cv0es")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1096429756]
+rotation = 0.7853982
+scale = Vector2(0.2, 0.2)
+texture = SubResource("GradientTexture2D_cv0es")

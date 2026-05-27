@@ -142,8 +142,6 @@ func _on_network_message(data):
 				PlayersManager.change_name(data["peer_id"], data["slot"], data["name"])
 			"players_sync":
 				PlayersManager.copy_players(data["list"])
-			"spawn_players":
-				PlayersManager.spawn_players()
 
 
 ### SIGNAL FUNCTIONS

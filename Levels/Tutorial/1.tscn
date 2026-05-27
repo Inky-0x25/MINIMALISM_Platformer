@@ -1,13 +1,46 @@
 [gd_scene format=3 uid="uid://dnw1d72pibeoi"]
 
-[ext_resource type="PackedScene" uid="uid://cqng2udp4uetb" path="res://Entities/Platform/Platform.tscn" id="1_m64vd"]
+[ext_resource type="PackedScene" uid="uid://bbxulbhikcd20" path="res://Entities/Player_spawner/Player_spawner.tscn" id="1_aeraw"]
+[ext_resource type="PackedScene" uid="uid://cqng2udp4uetb" path="res://Entities/Platforms/Platform.tscn" id="1_m64vd"]
+[ext_resource type="Script" uid="uid://c6hsyr4mhtn6g" path="res://Levels/level_loading.gd" id="1_o27mj"]
+[ext_resource type="PackedScene" uid="uid://coqi2wx5n8ay6" path="res://Entities/Anchors/Swing_anchors/Swing_anchor.tscn" id="4_d3y84"]
 
 [node name="1" type="Node2D" unique_id=1634874376]
+script = ExtResource("1_o27mj")
+
+[node name="PlayerSpawner1" parent="." unique_id=1302278769 instance=ExtResource("1_aeraw")]
+position = Vector2(0, 350)
+
+[node name="PlayerSpawner2" parent="." unique_id=90691602 instance=ExtResource("1_aeraw")]
+position = Vector2(0, 700)
 
 [node name="Platform" parent="." unique_id=587979277 instance=ExtResource("1_m64vd")]
-position = Vector2(130, 312)
+position = Vector2(100, 300)
+scale = Vector2(3, 1)
+
+[node name="Platform0" parent="." unique_id=246272239 instance=ExtResource("1_m64vd")]
+position = Vector2(250, 250)
+scale = Vector2(3, 1)
+
+[node name="Platform1" parent="." unique_id=1617157495 instance=ExtResource("1_m64vd")]
+position = Vector2(500, 250)
 scale = Vector2(3, 1)
 
 [node name="Platform2" parent="." unique_id=879242658 instance=ExtResource("1_m64vd")]
-position = Vector2(320, 360)
-scale = Vector2(50, 1)
+position = Vector2(320, 550)
+scale = Vector2(50, 20)
+
+[node name="Platform3" parent="." unique_id=867842213 instance=ExtResource("1_m64vd")]
+position = Vector2(-360, 150)
+scale = Vector2(20, 60)
+
+[node name="Platform4" parent="." unique_id=1957553662 instance=ExtResource("1_m64vd")]
+position = Vector2(320, -250)
+scale = Vector2(50, 20)
+
+[node name="Platform5" parent="." unique_id=787393635 instance=ExtResource("1_m64vd")]
+position = Vector2(1000, 150)
+scale = Vector2(20, 60)
+
+[node name="SwingAnchor" parent="." unique_id=1410939912 instance=ExtResource("4_d3y84")]
+position = Vector2(370, 35)

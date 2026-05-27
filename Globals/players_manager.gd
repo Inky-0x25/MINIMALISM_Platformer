@@ -94,11 +94,16 @@ func sync_players():
 
 ### SPAWNING PLAYERS
 # Spawn a player instance locally
-func spawn_player(player):
+func spawn_player(player, position1, position2):
 	var peer_id = player["peer_id"]
 	var slot = player["slot"]
 	var player_id = "%s_%s" % [peer_id, slot]
 	var p = player_scene.instantiate()
+	
+	if slot == 1 :
+		p.position = position1
+	else :
+		p.position = position2
 	
 	p.name = player_id
 	p.peer_id = peer_id
@@ -111,6 +116,8 @@ func spawn_player(player):
 
 
 # Spawn all player instances
-func spawn_players():
+func spawn_players(position1, position2=null):
+	if position2==null:
+		position2 = position1
 	for player in players:
-		spawn_player(player)
+		spawn_player(players[player], position1, position2)

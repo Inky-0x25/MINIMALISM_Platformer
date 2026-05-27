@@ -2,7 +2,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ct5l6"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_x7jy2"]
+[sub_resource type="Gradient" id="Gradient_ct5l6"]
+colors = PackedColorArray(0.09239707, 0.09239706, 0.09239706, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x7jy2"]
+gradient = SubResource("Gradient_ct5l6")
+width = 1
+height = 1
+fill_to = Vector2(0, 0)
 
 [node name="Platform" type="AnimatableBody2D" unique_id=587979277]
 
@@ -11,4 +18,4 @@ shape = SubResource("RectangleShape2D_ct5l6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1698465246]
 scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_x7jy2")
+texture = SubResource("GradientTexture2D_x7jy2")
