@@ -3,16 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://bbxulbhikcd20" path="res://Entities/Player_spawner/Player_spawner.tscn" id="1_aeraw"]
 [ext_resource type="PackedScene" uid="uid://cqng2udp4uetb" path="res://Entities/Platforms/Platform.tscn" id="1_m64vd"]
 [ext_resource type="Script" uid="uid://c6hsyr4mhtn6g" path="res://Levels/level_loading.gd" id="1_o27mj"]
+[ext_resource type="PackedScene" uid="uid://ixfbux77hbqq" path="res://Entities/Camera/Camera.tscn" id="2_26w46"]
 [ext_resource type="PackedScene" uid="uid://coqi2wx5n8ay6" path="res://Entities/Anchors/Swing_anchors/Swing_anchor.tscn" id="4_d3y84"]
 
 [node name="1" type="Node2D" unique_id=1634874376]
 script = ExtResource("1_o27mj")
 
+[node name="Camera" parent="." unique_id=2096745991 instance=ExtResource("2_26w46")]
+
 [node name="PlayerSpawner1" parent="." unique_id=1302278769 instance=ExtResource("1_aeraw")]
-position = Vector2(0, 350)
+position = Vector2(0, 340)
 
 [node name="PlayerSpawner2" parent="." unique_id=90691602 instance=ExtResource("1_aeraw")]
-position = Vector2(0, 700)
+position = Vector2(-50, 340)
 
 [node name="Platform" parent="." unique_id=587979277 instance=ExtResource("1_m64vd")]
 position = Vector2(100, 300)

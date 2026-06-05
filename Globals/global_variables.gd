@@ -61,10 +61,10 @@ func load_settings():
 		
 		# load keybidings
 		for action in config.get_section_keys("input"):
-			var key_string = config.get_value("input", action)
+			var key = config.get_value("input", action)
 			
 			var event = InputEventKey.new()
-			event.keycode = OS.find_keycode_from_string(key_string)
+			event.physical_keycode = key
 			
 			InputMap.action_erase_events(action)
 			InputMap.action_add_event(action, event)
@@ -80,7 +80,7 @@ func save_settings():
 	for action in InputMap.get_actions():
 		var events = InputMap.action_get_events(action)
 		if events.size() > 0:
-			config.set_value("input", action, events[0].as_text())
+			config.set_value("input", action, events[0].physical_keycode)
 	
 	config.save(setting_file)
 

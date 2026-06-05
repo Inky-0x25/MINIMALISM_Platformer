@@ -1,5 +1,11 @@
 extends CharacterBody2D
 
+@onready var collision = $Collision
+@onready var sprite = $Sprite
+@onready var displayed_name = $Name
+@onready var camera = $Camera
+
+
 ### Player identifying info
 var peer_id = 1
 var player_slot = 1
@@ -36,7 +42,7 @@ var is_wall_sliding : bool = false
 var is_climbing : bool = false
 var wall_jump_lock_timer : float = 0.0
 var is_swinging : bool = false
-var swing_anchor : Marker2D = null
+var swing_center = null
 @export var swing_max_length : float = 180.0
 var swing_length : float = 0
 @export var speed_boost_duration : float = 15.0
@@ -47,6 +53,14 @@ var stats = normal_stats_profile
 
 
 func _ready() -> void:
+	if peer_id == Networking.get_local_id():
+		add_to_group("local_players")
+		camera.enabled = not GlobalVar.local_multiplayer_enabled
+	else:
+		collision.disabled = true
+		sprite.modulate.a = 0.3
+	
+	displayed_name.text = player_name
 	add_to_group("players")
 	### Control mapping
 	move_left += str(player_slot)
@@ -126,7 +140,6 @@ func _physics_process(delta: float) -> void:
 			jump_input_buffer_timer = stats.jump_input_buffer_time
 		
 		jump_cooldown_timer = max(0, jump_cooldown_timer-delta)
-		
 		
 		if jump_cooldown_timer == 0 && jump_input_buffer_timer > 0 && is_able_to_jump && not is_swinging:
 			if coyote_timer > 0:
@@ -221,14 +234,15 @@ func _physics_process(delta: float) -> void:
 		### Swinging
 		# Start swinging
 		if Input.is_action_just_pressed(swing):
-			swing_anchor = _get_nearest_swing_point()
-			if swing_anchor:
+			var anchor = _get_nearest_swing_point()
+			if anchor:
+				swing_center = anchor.global_position
 				is_swinging = true
-				swing_length = global_position.distance_to(swing_anchor.global_position)
+				swing_length = global_position.distance_to(swing_center)
 		
 		# Swinging movement
-		if is_swinging and swing_anchor:
-			var anchor_pos = swing_anchor.global_position
+		if is_swinging and swing_center != null:
+			var anchor_pos = swing_center
 			var rope = global_position - anchor_pos
 			var rope_dir = rope.normalized()
 			
@@ -252,9 +266,12 @@ func _physics_process(delta: float) -> void:
 			is_swinging = false
 			velocity.x *= stats.swing_release_boost
 			velocity.y *= stats.swing_release_vertical_speed_multiplier
-			swing_anchor = null
+			swing_center = null
 		
 		move_and_slide()
+		Networking.send_to_others({"type":"sync_player_state", "player_id":"%s_%s"%[peer_id, player_slot], 
+		"position":self.global_position, "velocity":self.velocity, "sliding":is_sliding, "climbing":is_climbing, 
+		"swinging":is_swinging, "swing_center":swing_center, "direction":facing_direction})
 
 
 func _get_nearest_swing_point():
@@ -271,5 +288,16 @@ func _get_nearest_swing_point():
 
 
 func _draw():
-	if is_swinging and swing_anchor:
-		draw_line(Vector2.ZERO, to_local(swing_anchor.global_position), Color.WHITE, 2)
+	if is_swinging and swing_center != null:
+		draw_line(Vector2.ZERO, to_local(swing_center), Color(1, 1, 1, sprite.modulate.a), 2)
+
+func sync_state(sync_global_position, sync_velocity, sync_is_sliding, sync_is_climbing, 
+sync_is_swinging, sync_swing_center, sync_facing_direction):
+	self.global_position = sync_global_position
+	self.velocity = sync_velocity
+	is_sliding = sync_is_sliding
+	is_climbing = sync_is_climbing
+	is_swinging = sync_is_swinging
+	swing_center = sync_swing_center
+	facing_direction = sync_facing_direction
+	queue_redraw()

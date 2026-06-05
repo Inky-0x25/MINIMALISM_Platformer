@@ -140,15 +140,22 @@ func _on_network_message(data):
 				PlayersManager.remove_player(data["peer_id"], data["slot"])
 			"change_name":
 				PlayersManager.change_name(data["peer_id"], data["slot"], data["name"])
+			"request_players_sync":
+				PlayersManager.sync_players_for_peer(data["peer_id"])
 			"players_sync":
 				PlayersManager.copy_players(data["list"])
+			"start_game":
+				GlobalNav.change_scene(data["level"])
+			"sync_player_state":
+				if(PlayersManager.players[data["player_id"]]["instance"]):
+					PlayersManager.players[data["player_id"]]["instance"].sync_state(data["position"], 
+					data["velocity"], data["sliding"], data["climbing"], data["swinging"], 
+					data["swing_center"], data["direction"])
 
 
 ### SIGNAL FUNCTIONS
 func _on_peer_connected(id):
 	print("[%s]-Peer connected: %s" % [get_local_id(), id])
-	if multiplayer.is_server():
-		send(id, {"type": "players_sync", "list": PlayersManager.players})
 
 func _on_peer_disconnected(id):
 	print("Peer disconnected:", id)

@@ -2,7 +2,7 @@ extends Node
 
 @export var player_scene: PackedScene = preload("res://Entities/Player/Player.tscn")
 
-var players = {"1_1":{"peer_id" : 1, "slot" : 1, "name" : ""}}
+var players = {"1_1":{"peer_id" : 1, "slot" : 1, "name" : "", "instance" : null}}
 var local_player_count = 1
 var max_player_on_a_machine = 2
 
@@ -19,7 +19,8 @@ func add_player(peer_id, slot, player_name):
 		players[id] = {
 			"peer_id": peer_id,
 			"slot": slot,
-			"name": player_name
+			"name": player_name,
+			"instance" : null
 		}
 		_players_data_update.emit()
 
@@ -80,16 +81,17 @@ func Change_name_for_all(peer_id, slot, player_name):
 				"slot": slot,
 				"name": player_name})
 
-# Copy new players to the local list
+# Copy new player list to the local list
 func copy_players(new_list):
-	for key in new_list:
-		if not players.has(key):
-			players[key] = new_list[key]
+	players = new_list.duplicate(true)
 	_players_data_update.emit()
 
-# Syncs the player list for peers
+# Syncs the player list to others
 func sync_players():
 	Networking.send_to_others({"type": "players_sync", "list": players})
+
+func sync_players_for_peer(id):
+	Networking.send(id, {"type": "players_sync", "list": players})
 
 
 ### SPAWNING PLAYERS
@@ -111,8 +113,8 @@ func spawn_player(player, position1, position2):
 	p.player_name = player["name"]
 	p.set_multiplayer_authority(peer_id)
 	
-	add_child(p)
 	player["instance"] = p
+	add_child(p)
 
 
 # Spawn all player instances

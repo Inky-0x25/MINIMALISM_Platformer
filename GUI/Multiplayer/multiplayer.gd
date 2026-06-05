@@ -54,6 +54,7 @@ func _on_second_player_state_changed(state):
 		PlayersManager.local_player_count = 1
 		PlayersManager.remove_player_for_all(Networking.get_local_id(), 2)
 	update_start_button_state()
+	_ui_update()
 
 # Trigger on name submission
 func _on_name_submitted(_new_text, player_name, name_edit, slot):
@@ -118,9 +119,10 @@ func _on_joining():
 
 # Trigger when connected to the server
 func _on_connection_to_server():
-		PlayersManager.add_player_for_all(Networking.get_local_id(), 1, player_1_name.text)		
+		PlayersManager.add_player_for_all(Networking.get_local_id(), 1, player_1_name_edit.text)		
 		if GlobalVar.local_multiplayer_enabled:
-			PlayersManager.add_player_for_all(Networking.get_local_id(), 2, player_2_name.text)
+			PlayersManager.add_player_for_all(Networking.get_local_id(), 2, player_2_name_edit.text)
+		Networking.send_to_server({"type":"request_players_sync", "peer_id":Networking.get_local_id()})
 
 # Trigger when disconnect button is pressed
 func _on_disconnect():
@@ -129,7 +131,6 @@ func _on_disconnect():
 
 # Trigger when turning back to main menu
 func _on_back():
-	_on_second_player_state_changed(false)
 	GlobalNav.change_scene("res://GUI/Main/Main.tscn")
 
 # Triggered when players data is modify with functions
@@ -140,16 +141,11 @@ func _ui_update():
 	ip_to_join.text = Networking.connected_ip
 	change_ui_mode(not GlobalVar.remote_multiplayer_enabled)
 	enable_second_player_button.button_pressed = GlobalVar.local_multiplayer_enabled
-	_on_second_player_state_changed(GlobalVar.local_multiplayer_enabled)
 	
 	# Local players update
 	var local_id = str(Networking.get_local_id())
 	player_1_id.text = local_id + "_1"
 	player_2_id.text = local_id + "_2"
-	if PlayersManager.players.has(player_1_id.text):
-		player_1_name_edit.text = PlayersManager.players[player_1_id.text]["name"]
-	if PlayersManager.players.has(player_2_id.text):
-		player_2_name_edit.text = PlayersManager.players[player_2_id.text]["name"]
 	if player_1_name_edit.text == "":
 		player_1_name.text = "@menu_unnamed@"
 	else:
@@ -158,12 +154,17 @@ func _ui_update():
 		player_2_name.text = "@menu_unnamed@"
 	else:
 		player_2_name.text = player_2_name_edit.text
+	if PlayersManager.players.has(player_1_id.text):
+		player_1_name_edit.text = PlayersManager.players[player_1_id.text]["name"]
+	if PlayersManager.players.has(player_2_id.text):
+		player_2_name_edit.text = PlayersManager.players[player_2_id.text]["name"]
 	
 	# Room list update
 	for playerContainer in room_player_list.get_children():
 		if playerContainer.get_node("PlayerID")!=player_1_id and playerContainer.get_node("PlayerID")!=player_2_id:
 			playerContainer.queue_free()
 	for key in PlayersManager.players:
+		print(Networking.get_local_id(), ": ", key)
 		var p = PlayersManager.players[key]
 		if p["peer_id"] != Networking.get_local_id():
 			var new_player_id = str(p["peer_id"]) + "_" + str(p["slot"])

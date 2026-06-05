@@ -14,7 +14,7 @@ extends Resource
 @export var jump_input_buffer_time : float = 0.2
 
 @export var jump_speed : float = 550.0
-@export var jump_run_speed_boost : float = 200.0
+@export var jump_run_speed_boost : float = 120.0
 
 @export var falling_max_speed : float = 1000.0
 @export var falling_gravity_multiplier : float = 2.4

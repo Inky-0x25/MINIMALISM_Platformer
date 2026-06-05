@@ -7,14 +7,30 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_u36tg"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1599674331]
+position = Vector2(10, -10)
 script = ExtResource("1_e5kic")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1104426134]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1104426134]
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_e5kic")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1182808115]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1182808115]
 scale = Vector2(19.999996, 19.999996)
 texture = SubResource("CanvasTexture_u36tg")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=294411367]
+[node name="Name" type="Label" parent="." unique_id=1821738991]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="Camera" type="Camera2D" parent="." unique_id=341959849]
+enabled = false
